@@ -45,7 +45,9 @@ const filterFn = <T>(
   return newEmptyArray;
 };
 
-console.log(filterFn(data, (element) => element > 6));
+console.log(filterFn(data, (element) => element < 24));
+
+console.log("every");
 
 const everyFn = <T>(
   array: T[],
@@ -53,16 +55,39 @@ const everyFn = <T>(
 ): boolean => {
   const newEmptyArray: T[] = [];
   array.reduce((accumulator: T, currentValue: T, currentIndex: number) => {
-    if (callback(accumulator, currentIndex)) {
-      newEmptyArray.push(accumulator);
+    if (callback(currentValue, currentIndex)) {
+      newEmptyArray.push(currentValue);
     }
+    return accumulator;
   }, array[0]);
+  console.log(newEmptyArray);
+  console.log(newEmptyArray.length);
   if (newEmptyArray.length === array.length) {
     return true;
   }
   return false;
 };
 
-console.log(everyFn(data, (element) => element % 2 === 0));
+console.log(everyFn(data, (element) => element >= 5));
 
-// const someFn = (array, callback) => {}
+console.log("some");
+const someFn = <T>(
+  array: T[],
+  callback: (element: T, index: number) => boolean
+): boolean => {
+  const newEmptyArray: T[] = [];
+  array.reduce((accumulator: T, currentValue: T, currentIndex: number) => {
+    if (callback(currentValue, currentIndex)) {
+      newEmptyArray.push(currentValue);
+    }
+    return accumulator;
+  }, array[0]);
+  console.log(newEmptyArray);
+  console.log(newEmptyArray.length);
+  if (newEmptyArray.length >= 1) {
+    return true;
+  }
+  return false;
+};
+
+console.log(someFn(data, (element) => element > 5.5));
