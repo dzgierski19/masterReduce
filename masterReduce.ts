@@ -16,7 +16,10 @@ const arrayReduce = (array: any[]) => {
 
 console.log(arrayReduce(data));
 
-const mapFn = <T>(array: T[], callback: (element: T, index: number) => T) => {
+const mapFn = <T>(
+  array: T[],
+  callback: (element: T, index: number) => T
+): T[] => {
   const newEmptyArray: T[] = [];
   array.reduce((accumulator: T, currentValue: T, currentIndex: number) => {
     accumulator = callback(currentValue, currentIndex);
@@ -28,8 +31,38 @@ const mapFn = <T>(array: T[], callback: (element: T, index: number) => T) => {
 
 console.log(mapFn(data, (element) => element / 2));
 
-// const filterFn = (array, callback) => {}
+const filterFn = <T>(
+  array: T[],
+  callback: (element: T, index: number) => boolean
+): T[] => {
+  const newEmptyArray: T[] = [];
+  array.reduce((accumulator: T, currentValue: T, currentIndex: number) => {
+    if (callback(currentValue, currentIndex)) {
+      newEmptyArray.push(currentValue);
+    }
+    return accumulator;
+  }, array[0]);
+  return newEmptyArray;
+};
 
-// const everyFn = (array, callback) => {}
+console.log(filterFn(data, (element) => element > 6));
+
+const everyFn = <T>(
+  array: T[],
+  callback: (element: T, index: number) => boolean
+): boolean => {
+  const newEmptyArray: T[] = [];
+  array.reduce((accumulator: T, currentValue: T, currentIndex: number) => {
+    if (callback(accumulator, currentIndex)) {
+      newEmptyArray.push(accumulator);
+    }
+  }, array[0]);
+  if (newEmptyArray.length === array.length) {
+    return true;
+  }
+  return false;
+};
+
+console.log(everyFn(data, (element) => element % 2 === 0));
 
 // const someFn = (array, callback) => {}
