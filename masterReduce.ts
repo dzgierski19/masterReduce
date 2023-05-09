@@ -1,22 +1,19 @@
 const data = [5, 23, 5.5, 688];
 
-// const mapFn = <T, K>(
-//   array: T[],
-//   callback: (element: T, index: number) => T
-// ): (T | K)[] => {
-//   // const newEmptyArray: T[] = [];
-//   return array.reduce(
-//     (accumulator: (T | K)[], currentValue: T, currentIndex: number) => {
-//       accumulator = callback(currentValue, currentIndex);
-//       newEmptyArray.push(accumulator);
-//       return accumulator;
-//     },
-//     []
-//   ); //tu cos zmienic
-//   // return newEmptyArray;
-// };
+const mapFn = <T, K>(
+  array: T[],
+  callback: (element: T, index: number) => T
+): (T | K)[] => {
+  return array.reduce(
+    (accumulator: (T | K)[], currentValue: T, currentIndex: number) => {
+      accumulator.push(callback(currentValue, currentIndex));
+      return accumulator;
+    },
+    []
+  );
+};
 
-// console.log(mapFn(data, (element) => element / 2));
+console.log(mapFn(data, (element) => element / 2));
 
 // const filterFn = <T>(
 //   array: T[],
