@@ -54,12 +54,12 @@ const everyFn = <T>(
   callback: (element: T, index: number) => boolean
 ): boolean => {
   const newEmptyArray: T[] = [];
-  array.reduce((accumulator: T, currentValue: T, currentIndex: number) => {
+  array.reduce((accumulator: T[], currentValue: T, currentIndex: number) => {
     if (callback(currentValue, currentIndex)) {
       newEmptyArray.push(currentValue);
     }
     return accumulator;
-  }, array[0]);
+  }, []);
   console.log(newEmptyArray);
   console.log(newEmptyArray.length);
   if (newEmptyArray.length === array.length) {
