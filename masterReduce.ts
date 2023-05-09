@@ -15,22 +15,22 @@ const mapFn = <T, K>(
 
 console.log(mapFn(data, (element) => element / 2));
 
-// const filterFn = <T>(
-//   array: T[],
-//   callback: (element: T, index: number) => boolean
-// ): boolean => {
-//   return array.reduce(
-//     (accumulator: T, currentValue: T, currentIndex: number) => {
-//       if (callback(currentValue, currentIndex)) {
-//         return true;
-//       }
-//       return false;
-//     },
-//     true
-//   );
-// };
+const filterFn = <T>(
+  array: T[],
+  callback: (element: T, index: number) => boolean
+): boolean => {
+  return array.reduce(
+    (accumulator: T, currentValue: T, currentIndex: number) => {
+      if (callback(currentValue, currentIndex)) {
+        return true;
+      }
+      return false;
+    },
+    true
+  );
+};
 
-// console.log(filterFn(data, (element) => element < 24));
+console.log(filterFn(data, (element) => element < 24));
 
 console.log("every");
 
@@ -42,9 +42,8 @@ const everyFn = <T>(
     (accumulator: boolean, currentValue: T, currentIndex: number) => {
       if (callback(currentValue, currentIndex)) {
         return accumulator;
-      } else {
-        return false;
       }
+      return false;
     },
     true
   );
@@ -62,9 +61,8 @@ const someFn = <T>(
     (accumulator: boolean, currentValue: T, currentIndex: number) => {
       if (!callback(currentValue, currentIndex)) {
         return accumulator;
-      } else {
-        return true;
       }
+      return true;
     },
     false
   );
