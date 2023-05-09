@@ -32,8 +32,6 @@ const filterFn = <T>(
 
 console.log(filterFn(data, (element) => element < 24));
 
-console.log("every");
-
 const everyFn = <T>(
   array: T[],
   callback: (element: T, index: number) => boolean
@@ -50,8 +48,6 @@ const everyFn = <T>(
 };
 
 console.log(everyFn(data, (element) => element < 65));
-
-console.log("some");
 
 const someFn = <T>(
   array: T[],
