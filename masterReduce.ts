@@ -18,15 +18,15 @@ console.log(mapFn(data, (element) => element / 2));
 const filterFn = <T>(
   array: T[],
   callback: (element: T, index: number) => boolean
-): boolean => {
+): T[] => {
   return array.reduce(
-    (accumulator: T, currentValue: T, currentIndex: number) => {
+    (accumulator: T[], currentValue: T, currentIndex: number) => {
       if (callback(currentValue, currentIndex)) {
-        return true;
+        accumulator.push(currentValue);
       }
-      return false;
+      return accumulator;
     },
-    true
+    []
   );
 };
 
